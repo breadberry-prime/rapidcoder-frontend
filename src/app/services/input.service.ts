@@ -1,9 +1,20 @@
-import { Injectable } from '@angular/core';
+import {HostListener, Injectable} from '@angular/core';
+import { fromEvent } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class InputService {
 
-  constructor() { }
+  constructor() {
+    this.initEventLister()
+  }
+  private keyDownHandler = () => {
+
+  }
+
+  private initEventLister = () => {
+    document.addEventListener("keydown", (e) => {});
+  }
 }
