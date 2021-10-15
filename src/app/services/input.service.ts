@@ -8,7 +8,7 @@ import {ContextService} from "./context.service";
 })
 export class InputService {
   private currentExpectedInputIndex: number = 0;
-  private expectedLetter = this.contextService.getText()[this.currentExpectedInputIndex];
+  private expectedLetter = this.contextService.text[this.currentExpectedInputIndex];
 
   constructor(
       private gameService: GameService,
