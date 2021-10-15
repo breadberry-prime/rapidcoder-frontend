@@ -29,8 +29,6 @@ describe('inputService', () => {
 
         // arrange
         let event = new KeyboardEvent("keypress", {"key": "a"});
-        const userInput = "f";
-        const expectedInput = "k";
 
         // assert
         // const result = InputService.check(userInput, expectedInput)
