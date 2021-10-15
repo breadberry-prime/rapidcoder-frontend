@@ -6,6 +6,7 @@ import {GameService} from "./game.service";
 import {ContextService} from "./context.service";
 import {ViewServiceMock} from "../testing/mock/view.service.mock";
 import {ViewService} from "./view.service";
+import {ViewRenderLetterParameterInterface} from "../interfaces/view.render-letter.parameter.interface";
 
 describe('inputService', () => {
     let gameServiceMock: GameService;
@@ -30,20 +31,25 @@ describe('inputService', () => {
         service = new InputService(gameServiceMock, contextServiceMock, viewServiceMock);
     });
 
-    it('inputservice.check should return false if f:k', () => {
+    it('keyDown handler should call renderLetter with right parameter ', () => {
         // arrange
         const contextSpy = jest.spyOn(contextServiceMock, "text", "get");
         const viewServiceSpy = jest.spyOn(viewServiceMock, "renderLetter")
 
         contextSpy.mockReturnValue("This is a test text to test");
 
-        let event = new KeyboardEvent("keypress", {"key": "a"});
+        let event = new KeyboardEvent("keypress", {"key": "T"});
+
+        const expectedParameter: ViewRenderLetterParameterInterface = {
+            correct: true,
+            allowNextWordToGetTyped: true,
+            isWhitespace: false
+        }
 
         // act
         const result = service['keyDownHandler'](event)
 
         // assert
-        expect(viewServiceSpy).toHaveBeenCalledWith({correct: false, nextLetter: true})
-        // expect().toBeFalse()
+        expect(viewServiceSpy).toHaveBeenCalledWith(expectedParameter)
     })
 })
