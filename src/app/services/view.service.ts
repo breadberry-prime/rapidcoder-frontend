@@ -6,4 +6,8 @@ import { Injectable } from '@angular/core';
 export class ViewService {
 
   constructor() { }
+
+  public renderLetter = () => {}
+  public startGame = () => {}
+  public endGame = () => {}
 }

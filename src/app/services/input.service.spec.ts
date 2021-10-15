@@ -27,19 +27,23 @@ describe('inputService', () => {
         contextServiceMock = TestBed.inject<any>(ContextService);
         viewServiceMock = TestBed.inject<any>(ViewService)
 
-        service = new InputService(gameServiceMock, contextServiceMock);
+        service = new InputService(gameServiceMock, contextServiceMock, viewServiceMock);
     });
 
     it('inputservice.check should return false if f:k', () => {
-        // TODO write usful test cases
-
         // arrange
+        const contextSpy = jest.spyOn(contextServiceMock, "text", "get");
+        const viewServiceSpy = jest.spyOn(viewServiceMock, "renderLetter")
+
+        contextSpy.mockReturnValue("This is a test text to test");
+
         let event = new KeyboardEvent("keypress", {"key": "a"});
 
         // act
         const result = service['keyDownHandler'](event)
 
         // assert
-        // expect(result).toBeFalse()
+        expect(viewServiceSpy).toHaveBeenCalledWith({correct: false, nextLetter: true})
+        // expect().toBeFalse()
     })
 })

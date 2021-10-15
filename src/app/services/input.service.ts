@@ -2,6 +2,7 @@ import { Injectable} from '@angular/core';
 import {GameService} from "./game.service";
 import {GAMESTATE} from "../enums/gamestate.enum";
 import {ContextService} from "./context.service";
+import {ViewService} from "./view.service";
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,8 @@ export class InputService {
 
   constructor(
       private gameService: GameService,
-      private contextService: ContextService
+      private contextService: ContextService,
+      private viewService: ViewService
   ) {
     this.initEventLister()
   }
@@ -37,6 +39,9 @@ export class InputService {
   private incorrectInputHandler = (event: any) => {
     const pressedLetter = event.key;
     const nextLetter = ""
+    this.viewService.renderLetter({correct: false, nextLetter: true})
+    // TODO create enum for renderLetter function
+    // TODO write tests for concept completion
   }
 
   private backspaceInputHandler = () => {

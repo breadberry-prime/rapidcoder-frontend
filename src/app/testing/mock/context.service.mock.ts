@@ -1,3 +1,3 @@
 export class ContextServiceMock {
-    gameState = jest.fn();
+    getNewText = jest.fn();
 }
