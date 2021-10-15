@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ContextService} from "../../services/context.service";
 
 @Component({
   selector: 'app-game-master',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GameMasterComponent implements OnInit {
 
-  constructor() { }
+  constructor(private contextService: ContextService) { }
 
   ngOnInit(): void {
   }
