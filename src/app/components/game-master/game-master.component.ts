@@ -8,7 +8,9 @@ import {ContextService} from "../../services/context.service";
 })
 export class GameMasterComponent implements OnInit {
 
-  constructor(private contextService: ContextService) { }
+  constructor(
+      public contextService: ContextService
+  ) { }
 
   ngOnInit(): void {
   }
