@@ -8,7 +8,7 @@ import {GAMESTATE} from "../enums/gamestate.enum";
   providedIn: 'root'
 })
 export class GameService {
-  protected gameState: GAMESTATE = GAMESTATE.IDLE;
+  gameState: GAMESTATE = GAMESTATE.IDLE;
 
   constructor(
       private contextService: ContextService,

@@ -8,7 +8,7 @@ export class ContextService {
       ' men armed with automatic rifles and rocket-propelled grenade launchers - believed to have been members of Shia ' +
       'and Christian militias - exchanged fire in the streets.'
 
-  constructor() { }
+  constructor() {}
 
   getText = () => {
     return this.sampleText
