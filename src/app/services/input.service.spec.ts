@@ -26,7 +26,12 @@ describe('inputService', () => {
 
     it('inputservice.check should return false if f:k', () => {
         // arrange
+<<<<<<< HEAD
         let event = new KeyboardEvent("keypress", {"key": "a"};
+=======
+        const userInput = "f";
+        const expectedInput = "k";
+>>>>>>> feature/contextService
 
         // assert
         const result = InputService.check(userInput, expectedInput)
