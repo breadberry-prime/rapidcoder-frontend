@@ -18,9 +18,9 @@ describe('inputService', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [
-                { provide: GameService, useClass: GameServiceMock },
-                { provide: ContextService, useClass: ContextServiceMock },
-                { provide: ViewService, useClass: ViewServiceMock}
+                { provide: GameService, useClass: gameServiceMock },
+                { provide: ContextService, useClass: contextServiceMock },
+                { provide: ViewService, useClass: viewServiceMock }
             ]
         });
 
@@ -37,6 +37,9 @@ describe('inputService', () => {
         const viewServiceSpy = jest.spyOn(viewServiceMock, "renderLetter")
 
         contextSpy.mockReturnValue("This is a test text to test");
+
+        gameServiceMock.gameState.mock
+        // TODO Fix mock
 
         let event = new KeyboardEvent("keypress", {"key": "T"});
 

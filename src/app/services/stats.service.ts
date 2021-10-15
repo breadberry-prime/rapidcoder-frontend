@@ -7,7 +7,7 @@ import {statsInterface} from "../interfaces/stats.interface";
   providedIn: 'root'
 })
 export class StatsService {
-  private current_context = this.contextService.getText()
+  private current_context = this.contextService.text
   private counter_mistakes:number = 0
   private counter_correct:number = 0
   private word_times:Array<number> = []
