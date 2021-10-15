@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ContextService} from "../../services/context.service";
+import {InputService} from "../../services/input.service";
 
 @Component({
   selector: 'app-game-master',
@@ -9,10 +10,10 @@ import {ContextService} from "../../services/context.service";
 export class GameMasterComponent implements OnInit {
 
   constructor(
-      public contextService: ContextService
+      public contextService: ContextService,
+      private inputService: InputService
   ) { }
 
   ngOnInit(): void {
   }
-
 }
