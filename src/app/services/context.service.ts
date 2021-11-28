@@ -28,6 +28,8 @@ export class ContextService {
   }
 
   private getCodeLevel (level: number, language: CODELANGUAGE) : CodeLevelInterface {
+    // TODO: Validate level and language
+
     let maxIndex = this._codeLevels.length
     let randomIndex = Math.floor(Math.random() * maxIndex);
     
