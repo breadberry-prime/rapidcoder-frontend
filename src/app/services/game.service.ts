@@ -21,7 +21,7 @@ export class GameService {
   startNewGame = () => {
     if (this.gameState === GAMESTATE.IDLE || this.gameState === GAMESTATE.FINISHED){
       this.gameState = GAMESTATE.PLAYING;
-      const currentText = this.contextService.text;
+      const currentText = this.contextService.code;
 
       // TODO: start input service monitoring
       // this.inputService.startInputMonitoring(currentText).then(gameResult => {});
