@@ -1,67 +1,79 @@
-import { Injectable} from '@angular/core';
-import {GameService} from "./game.service";
-import {GAMESTATE} from "../enums/gamestate.enum";
-import {ContextService} from "./context.service";
-import {ViewService} from "./view.service";
-import {ViewRenderLetterParameterInterface} from "../interfaces/view.render-letter.parameter.interface";
+import { Injectable } from '@angular/core';
+import { ContextService } from "./context.service";
+import { PressedLetterInterface } from "../interfaces/pressed-letter.interface";
 
 @Injectable({
   providedIn: 'root'
 })
 export class InputService {
-  private currentExpectedInputIndex: number = 0;
-  private expectedLetter = this.contextService.text[this.currentExpectedInputIndex];
-  private expectedNextLetter = this.contextService.text[this.currentExpectedInputIndex + 1]
+  private _currentExpectedInputIndex: number = 0;
+  private _expectedLetter = this.contextService.text[this._currentExpectedInputIndex];
+  private _expectedNextLetter = this.contextService.text[this._currentExpectedInputIndex + 1]
+  private _specialCharacter = ["Shift", "Backspace"]
 
   constructor(
-      private gameService: GameService,
       private contextService: ContextService,
-      private viewService: ViewService
   ) {
     this.initEventLister()
   }
 
   private keyDownHandler = (event: KeyboardEvent) => {
     // TODO: add if statement to make sure player is in a game
-    const pressedLetter = event.key;
+    const pressedLetter = this.getPressedLetter(event.key);
 
-    if (pressedLetter === this.expectedLetter){
-      this.correctInputHandler(event);
-    } else if (pressedLetter === 'Backspace') {
-      this.backspaceInputHandler();
-    } else {
-      this.incorrectInputHandler(event);
+    console.log(Object.assign(pressedLetter, {
+      "_expectedLetter": this._expectedLetter,
+      "expectedInputIndex": this._currentExpectedInputIndex,
+    }))
+
+    if (pressedLetter.isSpecialCharacter) {
+      console.log("special char", pressedLetter.letter)
+      if (pressedLetter.letter === "Backspace") {
+        if(this._currentExpectedInputIndex !== 0){
+          this._currentExpectedInputIndex --;
+        }
+      }
     }
-  }
-
-  private correctInputHandler = (event: KeyboardEvent) => {
-    this.currentExpectedInputIndex ++;
-
-    let renderParameter: ViewRenderLetterParameterInterface = {
-      correct: true,
-      allowNextWordToGetTyped: true,
-      isWhitespace: event.key === " "
-    }
-
-    this.viewService.renderLetter(renderParameter)
-  }
-
-  private incorrectInputHandler = (event: KeyboardEvent) => {
-    let renderParameter: ViewRenderLetterParameterInterface = {
-      correct: false,
-      allowNextWordToGetTyped: event.key !== " ",
-      isWhitespace: event.key === " ",
-      incorrectLetter: event.key
+    else {
+      if (pressedLetter.isCorrect){
+        this.correctInputHandler(pressedLetter);
+      }
+      else {
+        this.incorrectInputHandler(pressedLetter);
+      }
     }
 
-    this.viewService.renderLetter(renderParameter)
+    this.updateIndexStats()
   }
 
-  private backspaceInputHandler = () => {
-    this.currentExpectedInputIndex --;
+  private correctInputHandler = (pressedLetter: PressedLetterInterface) => {
+    console.log("correct");
+    this._currentExpectedInputIndex ++;
+
+    // TODO: call view service with fitting parameter
+  }
+
+  private incorrectInputHandler = (pressedLetter: PressedLetterInterface) => {
+    console.log("incorrect");
+    this._currentExpectedInputIndex ++;
+
+    // TODO: call view service with fitting parameter
+  }
+
+  private updateIndexStats = () => {
+    this._expectedLetter = this.contextService.text[this._currentExpectedInputIndex];
+    this._expectedNextLetter = this.contextService.text[this._currentExpectedInputIndex + 1]
+  }
+
+  private getPressedLetter = (letter: string): PressedLetterInterface => {
+    return {
+      letter: letter,
+      isCorrect: letter === this._expectedLetter,
+      isSpecialCharacter: this._specialCharacter.includes(letter)
+    }
   }
 
   private initEventLister = () => {
-    document.addEventListener("keydown", (e) => {});
+    document.addEventListener("keydown", (e) => {this.keyDownHandler(e)});
   }
 }
