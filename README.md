@@ -9,6 +9,7 @@ We recommend following the guidelines below to increase your chances of getting 
 - variable naming convention: **KebabCase** -> `exampleVariable` 
 - Do **not** push code with `comments, refactor code if the complexity is to hight
 - **Do not include swear words**
+
 ### Commands 🪁
 #### Run server
 
