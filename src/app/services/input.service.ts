@@ -7,8 +7,8 @@ import { PressedLetterInterface } from "../interfaces/pressed-letter.interface";
 })
 export class InputService {
   private _currentExpectedInputIndex: number = 0;
-  private _expectedLetter = this.contextService.text[this._currentExpectedInputIndex];
-  private _expectedNextLetter = this.contextService.text[this._currentExpectedInputIndex + 1]
+  private _expectedLetter = this.contextService.code[this._currentExpectedInputIndex];
+  private _expectedNextLetter = this.contextService.code[this._currentExpectedInputIndex + 1]
   private _specialCharacter = ["Shift", "Backspace"]
 
   constructor(
@@ -61,8 +61,8 @@ export class InputService {
   }
 
   private updateIndexStats = () => {
-    this._expectedLetter = this.contextService.text[this._currentExpectedInputIndex];
-    this._expectedNextLetter = this.contextService.text[this._currentExpectedInputIndex + 1]
+    this._expectedLetter = this.contextService.code[this._currentExpectedInputIndex];
+    this._expectedNextLetter = this.contextService.code[this._currentExpectedInputIndex + 1]
   }
 
   private getPressedLetter = (letter: string): PressedLetterInterface => {
