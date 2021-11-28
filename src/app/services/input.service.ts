@@ -1,9 +1,7 @@
-import { Injectable} from '@angular/core';
-import {GameService} from "./game.service";
-import {GAMESTATE} from "../enums/gamestate.enum";
-import {ContextService} from "./context.service";
-import {ViewService} from "./view.service";
-import {ViewRenderLetterParameterInterface} from "../interfaces/view.render-letter.parameter.interface";
+import { Injectable } from '@angular/core';
+import { ContextService } from "./context.service";
+import { ViewService } from "./view.service";
+import { ViewRenderLetterParameterInterface } from "../interfaces/view.render-letter.parameter.interface";
 
 @Injectable({
   providedIn: 'root'
@@ -14,10 +12,10 @@ export class InputService {
   private expectedNextLetter = this.contextService.text[this.currentExpectedInputIndex + 1]
 
   constructor(
-      private gameService: GameService,
       private contextService: ContextService,
       private viewService: ViewService
   ) {
+    console.log("init InputService")
     this.initEventLister()
   }
 
@@ -25,13 +23,24 @@ export class InputService {
     // TODO: add if statement to make sure player is in a game
     const pressedLetter = event.key;
 
-    if (pressedLetter === this.expectedLetter){
+    if (pressedLetter === this.expectedLetter) {
+      console.log("correct");
       this.correctInputHandler(event);
     } else if (pressedLetter === 'Backspace') {
       this.backspaceInputHandler();
-    } else {
+    } else if (pressedLetter === 'Space') {}
+    else {
       this.incorrectInputHandler(event);
+      console.log("incorrect");
     }
+
+    this.updateIndexStats()
+
+    console.log({
+      "receivedLetter": pressedLetter,
+      "expectedLetter": this.expectedLetter,
+      "expectedInputIndex": this.currentExpectedInputIndex,
+    })
   }
 
   private correctInputHandler = (event: KeyboardEvent) => {
@@ -58,10 +67,23 @@ export class InputService {
   }
 
   private backspaceInputHandler = () => {
-    this.currentExpectedInputIndex --;
+    console.log("backspaceInputHandler got called", this.currentExpectedInputIndex)
+    if(this.currentExpectedInputIndex !== 0){
+      this.currentExpectedInputIndex --;
+    }
+  }
+
+  private updateIndexStats = () => {
+    this.expectedLetter = this.contextService.text[this.currentExpectedInputIndex];
+    this.expectedNextLetter = this.contextService.text[this.currentExpectedInputIndex + 1]
   }
 
   private initEventLister = () => {
-    document.addEventListener("keydown", (e) => {});
+    document.addEventListener("keydown", (e) => {this.keyDownHandler(e)});
+    console.log("current input status", {
+      "expectedInput": this.currentExpectedInputIndex,
+      "expectedLetter": this.expectedLetter,
+      "expectedNextLetter": this.expectedNextLetter
+    })
   }
 }
