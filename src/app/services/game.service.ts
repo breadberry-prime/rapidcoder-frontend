@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {InputService} from "./input.service";
-import {StatsService} from "./stats.service";
 import {ContextService} from "./context.service";
 import {GAMESTATE} from "../enums/gamestate.enum";
 
@@ -12,8 +11,7 @@ export class GameService {
 
   constructor(
       private contextService: ContextService,
-      private inputService: InputService,
-      private statsService: StatsService
+      private inputService: InputService
   ) { }
 
   private submitGameResult = (gameResult: any) => {
