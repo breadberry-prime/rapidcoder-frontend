@@ -1,0 +1,5 @@
+export enum CODELANGUAGE {
+    PYTHON,
+    CSHARP,
+    JAVASCRIPT
+}

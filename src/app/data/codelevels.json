@@ -1,0 +1,17 @@
+[
+    {
+        "level" : 1,
+        "language" : "PYTHON",
+        "content" : ">>> print(\"Hello World!\")"
+    },
+    {
+        "level" : 1,
+        "language" : "CSHARP",
+        "content" : "Console.WriteLine(\"Hello World!\");"
+    },
+    {
+        "level" : 1,
+        "language" : "JAVASCRIPT",
+        "content" : "console.write(\"Hello World!\");"
+    }
+]
