@@ -1,22 +1,20 @@
-import {Injectable, OnInit} from '@angular/core';
-import {InputService} from "./input.service";
+import { Injectable } from '@angular/core';
 import {PressedLetterInterface} from "../interfaces/pressed-letter.interface";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
-export class StatsService implements OnInit{
+export class StatsService {
 
-  constructor(
-      private inputService: InputService
-  ) { }
+  constructor() {}
 
-  ngOnInit() {
-    this.inputService.eventObservable.subscribe()
+  public startTracking = (eventEmitter: Observable<PressedLetterInterface>) => {
+    eventEmitter.subscribe(this.eventManager)
   }
 
-  private eventManager(LetterUpdate: PressedLetterInterface) {
+  private eventManager = (LetterUpdate: PressedLetterInterface) => {
     // TODO: Handle events from emitter
+    console.log(LetterUpdate)
   }
-
 }

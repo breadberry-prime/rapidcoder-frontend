@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
-import {InputService} from "./input.service";
-import {ContextService} from "./context.service";
 import {GAMESTATE} from "../enums/gamestate.enum";
+import {StatsService} from "./stats.service";
+import {ViewService} from "./view.service";
+import {InputService} from "./input.service";
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,8 @@ export class GameService {
   gameState: GAMESTATE = GAMESTATE.IDLE;
 
   constructor(
-      private contextService: ContextService,
+      private statsService: StatsService,
+      private viewService: ViewService,
       private inputService: InputService
   ) { }
 
@@ -21,10 +23,9 @@ export class GameService {
   startNewGame = () => {
     if (this.gameState === GAMESTATE.IDLE || this.gameState === GAMESTATE.FINISHED){
       this.gameState = GAMESTATE.PLAYING;
-      const currentText = this.contextService.code;
+      const eventEmitter = this.inputService.startTracking()
+      this.statsService.startTracking(eventEmitter)
 
-      // TODO: start input service monitoring
-      // this.inputService.startInputMonitoring(currentText).then(gameResult => {});
 
     } else if (this.gameState === GAMESTATE.PLAYING){
       // additional process when game is running
