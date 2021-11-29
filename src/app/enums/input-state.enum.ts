@@ -1,0 +1,5 @@
+export enum INPUT_STATE {
+  CORRECT,
+  INCORRECT,
+  AMENDED
+}
