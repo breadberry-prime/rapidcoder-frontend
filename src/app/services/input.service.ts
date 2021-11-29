@@ -1,6 +1,10 @@
-import { Injectable } from '@angular/core';
-import { ContextService } from "./context.service";
-import { PressedLetterInterface } from "../interfaces/pressed-letter.interface";
+import {Injectable} from '@angular/core';
+import {ContextService} from "./context.service";
+import {PressedLetterInterface} from "../interfaces/pressed-letter.interface";
+import {fromEvent, Observable} from "rxjs";
+import {map} from 'rxjs/operators';
+import {INPUT_STATE} from "../enums/input-state.enum";
+import {TEXT_PROGRESS_STATE} from "../enums/text-progress-state.enum";
 
 @Injectable({
   providedIn: 'root'
@@ -11,69 +15,61 @@ export class InputService {
   private _expectedNextLetter = this.contextService.code[this._currentExpectedInputIndex + 1]
   private _specialCharacter = ["Shift", "Backspace"]
 
+  public eventObservable: Observable<PressedLetterInterface>
+
   constructor(
       private contextService: ContextService,
   ) {
-    this.initEventLister()
+    const source = fromEvent(document, "keydown");
+
+    this.eventObservable = source.pipe(map((event => this.keyDownHandler(event))))
+
+    this.eventObservable.subscribe(console.log)
   }
 
-  private keyDownHandler = (event: KeyboardEvent) => {
-    // TODO: add if statement to make sure player is in a game
-    const pressedLetter = this.getPressedLetter(event.key);
+  private keyDownHandler = (event: any): PressedLetterInterface => {
 
-    console.log(Object.assign(pressedLetter, {
-      "_expectedLetter": this._expectedLetter,
-      "expectedInputIndex": this._currentExpectedInputIndex,
-    }))
+    let userInput: PressedLetterInterface = {
+      letter: event.key,
+      targetLetterIndex: this._currentExpectedInputIndex,
+      letterStatus: event.key === this._expectedLetter ? INPUT_STATE.CORRECT : INPUT_STATE.INCORRECT,
+      textStatus: TEXT_PROGRESS_STATE.IN_PROGRESS,
+      isSpecialCharacter: this._specialCharacter.includes(event.key)
+    };
 
-    if (pressedLetter.isSpecialCharacter) {
-      console.log("special char", pressedLetter.letter)
-      if (pressedLetter.letter === "Backspace") {
+    if (userInput.isSpecialCharacter) {
+      console.log("special char", userInput.letter)
+      if (userInput.letter === "Backspace") {
         if(this._currentExpectedInputIndex !== 0){
           this._currentExpectedInputIndex --;
         }
       }
     }
     else {
-      if (pressedLetter.isCorrect){
-        this.correctInputHandler(pressedLetter);
+      if (userInput.letterStatus === INPUT_STATE.CORRECT){
+        this.correctInputHandler();
       }
       else {
-        this.incorrectInputHandler(pressedLetter);
+        this.incorrectInputHandler();
       }
     }
 
     this.updateIndexStats()
+    return userInput
   }
 
-  private correctInputHandler = (pressedLetter: PressedLetterInterface) => {
+  private correctInputHandler = () => {
     console.log("correct");
     this._currentExpectedInputIndex ++;
-
-    // TODO: call view service with fitting parameter
   }
 
-  private incorrectInputHandler = (pressedLetter: PressedLetterInterface) => {
+  private incorrectInputHandler = () => {
     console.log("incorrect");
     this._currentExpectedInputIndex ++;
-
-    // TODO: call view service with fitting parameter
   }
 
   private updateIndexStats = () => {
     this._expectedLetter = this.contextService.code[this._currentExpectedInputIndex];
     this._expectedNextLetter = this.contextService.code[this._currentExpectedInputIndex + 1]
-  }
-
-  private getPressedLetter = (letter: string): PressedLetterInterface => {
-    return {
-      letter: letter,
-      isCorrect: letter === this._expectedLetter,
-      isSpecialCharacter: this._specialCharacter.includes(letter)
-    }
-  }
-
-  private initEventLister = () => {
-    document.addEventListener("keydown", (e) => {this.keyDownHandler(e)});
   }
 }
