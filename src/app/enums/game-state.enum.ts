@@ -1,4 +1,4 @@
-export enum GAMESTATE {
+export enum GAME_STATE {
     IDLE,
     PLAYING,
     FINISHED

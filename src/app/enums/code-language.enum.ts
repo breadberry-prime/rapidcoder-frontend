@@ -1,4 +1,4 @@
-export enum CODELANGUAGE {
+export enum CODE_LANGUAGE {
     PYTHON,
     CSHARP,
     JAVASCRIPT

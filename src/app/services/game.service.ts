@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {GAMESTATE} from "../enums/gamestate.enum";
+import {GAME_STATE} from "../enums/game-state.enum";
 import {StatsService} from "./stats.service";
 import {ViewService} from "./view.service";
 import {InputService} from "./input.service";
@@ -8,7 +8,7 @@ import {InputService} from "./input.service";
   providedIn: 'root'
 })
 export class GameService {
-  gameState: GAMESTATE = GAMESTATE.IDLE;
+  gameState: GAME_STATE = GAME_STATE.IDLE;
 
   constructor(
       private statsService: StatsService,
@@ -23,8 +23,8 @@ export class GameService {
   }
 
   startNewGame = () => {
-    if (this.gameState === GAMESTATE.IDLE || this.gameState === GAMESTATE.FINISHED){
-      this.gameState = GAMESTATE.PLAYING;
+    if (this.gameState === GAME_STATE.IDLE || this.gameState === GAME_STATE.FINISHED){
+      this.gameState = GAME_STATE.PLAYING;
       const eventEmitter = this.inputService.startTracking()
 
       eventEmitter.subscribe(pressedLetterInterface => {
@@ -33,7 +33,7 @@ export class GameService {
         console.log(pressedLetterInterface)
       })
 
-    } else if (this.gameState === GAMESTATE.PLAYING){
+    } else if (this.gameState === GAME_STATE.PLAYING){
       // additional process when game is running
     }
   }

@@ -1,7 +1,7 @@
-import { CODELANGUAGE } from "../enums/codelanguage.enum";
+import { CODE_LANGUAGE } from "../enums/code-language.enum";
 
 export interface CodeLevelInterface {
     level: number,
-    language: CODELANGUAGE,
+    language: CODE_LANGUAGE,
     content: string
 }
