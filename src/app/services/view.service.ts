@@ -1,32 +1,27 @@
-import { Injectable, OnInit } from '@angular/core';
-import { PressedLetterInterface } from "../interfaces/pressed-letter.interface";
-import hljs from 'highlight.js';
+import { Injectable } from '@angular/core';
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class ViewService implements OnInit {
-  public code: any;
+export class ViewService {
+  private _activeTheme = "shades-of-purple.css"
 
-  constructor() { }
-
-  ngOnInit() {
-    this.initializeScreen()
+  constructor() {
+    this.loadTheme()
   }
 
-  private initializeScreen = () => {
-    hljs.highlightAll();
-    const activeText = document.getElementById("codeview")?.textContent;
-    // @ts-ignore
-    const html = hljs.highlightAuto(activeText);
-        // @ts-ignore
-    document.getElementById("codeview").innerHTML = html.value
+  private loadTheme = () => {
+    const head = document.getElementsByTagName("head")[0]
+
+    const link = document.createElement("link")
+    link.href = "/assets/themes/" + this._activeTheme
+    link.type = "text/css";
+    link.rel = "stylesheet"
+
+    head.appendChild(link)
   }
 
-  public renderAction = (actionInterface: PressedLetterInterface) => {
-    // TODO implement render action
-  }
-
-  public endGame = () => {}
+  public setTheme= (themeID: string) => {}
 }
 

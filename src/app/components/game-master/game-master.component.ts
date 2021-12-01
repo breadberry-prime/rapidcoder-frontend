@@ -8,8 +8,6 @@ import {ContextService} from "../../services/context.service";
   styleUrls: ['./game-master.component.sass']
 })
 export class GameMasterComponent implements OnInit {
-public codeHi: any;
-
   constructor(
       public contextService: ContextService
   ) { }
@@ -19,11 +17,8 @@ public codeHi: any;
    }
 
   private initializeScreen = () => {
-    const highlightedCode = hljs.highlightAuto('<span>Hello World!</span>')
-    console.log(document.getElementById('a'))
-    console.log(highlightedCode)
-    console.log(typeof(highlightedCode))
+    const html = hljs.highlight(this.contextService.code, {language: "python"})
     // @ts-ignore
-    document.getElementById('a').innerHTML += highlightedCode.value;
+    document.getElementById("codeField").innerHTML = html.value
   }
 }
