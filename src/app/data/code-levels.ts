@@ -1,20 +1,20 @@
-import { CODELANGUAGE } from "../enums/codelanguage.enum";
+import { CODE_LANGUAGE } from "../enums/code-language.enum";
 import { CodeLevelInterface } from "../interfaces/code-level.interface";
 
 export let codeLevels: CodeLevelInterface[] = [
     {
         "level" : 1,
-        "language" : CODELANGUAGE.PYTHON,
+        "language" : CODE_LANGUAGE.PYTHON,
         "content" : ">>> print(\"Hello World!\")"
     },
     {
         "level" : 1,
-        "language" : CODELANGUAGE.CSHARP,
+        "language" : CODE_LANGUAGE.CSHARP,
         "content" : "Console.WriteLine(\"Hello World!\");"
     },
     {
         "level" : 1,
-        "language" : CODELANGUAGE.JAVASCRIPT,
+        "language" : CODE_LANGUAGE.JAVASCRIPT,
         "content" : "console.write(\"Hello World!\");"
     }
 ]

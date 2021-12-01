@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CodeLevelInterface } from '../interfaces/code-level.interface';
-import { CODELANGUAGE } from '../enums/codelanguage.enum';
+import { CODE_LANGUAGE } from '../enums/code-language.enum';
 import { codeLevels } from '../data/code-levels';
 
 @Injectable({
@@ -27,7 +27,7 @@ export class ContextService {
     return codeLevel;
   }
 
-  private getCodeLevel (level: number, language: CODELANGUAGE) : CodeLevelInterface {
+  private getCodeLevel (level: number, language: CODE_LANGUAGE) : CodeLevelInterface {
     // TODO: Validate level and language
 
     let maxIndex = this._codeLevels.length
