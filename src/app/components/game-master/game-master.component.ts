@@ -13,7 +13,7 @@ public codeHi: any;
   constructor(
       public contextService: ContextService
   ) { }
-  
+
   ngOnInit() {
     this.initializeScreen()
    }
@@ -24,7 +24,6 @@ public codeHi: any;
     console.log(highlightedCode)
     console.log(typeof(highlightedCode))
     // @ts-ignore
-    document.getElementById('a').innerHTML += highlightedCode.value
-    
+    document.getElementById('a').innerHTML += highlightedCode.value;
   }
 }
