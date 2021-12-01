@@ -7,6 +7,7 @@ We recommend following the guidelines below to increase your chances of getting 
 - class naming convention: **PascalCase** -> `ExampleClass`
 - function naming convention: **KebabCase** -> `exampleFunction`
 - variable naming convention: **KebabCase** -> `exampleVariable` 
+- enum naming convention: **SnakeCase** -> `EXAMPLE_VARIABLE` 
 - Do **not** push code with `comments, refactor code if the complexity is to hight
 - **Do not include swear words**
 
