@@ -63,12 +63,12 @@ export const codeLevels: CodeLevelInterface[] = [
     },
     {
         "level" : 3,
-        "language" : CODE_LANGUAGE.PYTHON,
+        "language" : CODE_LANGUAGE.JAVASCRIPT,
         "content" : "\nvar x = 35;\nvar y = 99;\nvar z = 43;\n\nif ((x + y) < (z + y)) {\n  print(\"entered scope\")\n}"
     },
     {
         "level" : 4,
-        "language" : CODE_LANGUAGE.PYTHON,
+        "language" : CODE_LANGUAGE.JAVASCRIPT,
         "content" : "\nexport class Car {\n  constructor(make, model, year) {\n    this.make = make;\n    this.model = model;\n    this.self.year = year;\n  }\n}"
     },
 ]
