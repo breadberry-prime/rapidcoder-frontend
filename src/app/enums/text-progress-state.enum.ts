@@ -1,4 +1,0 @@
-export enum TEXT_PROGRESS_STATE {
-  IN_PROGRESS,
-  FINISHED
-}
