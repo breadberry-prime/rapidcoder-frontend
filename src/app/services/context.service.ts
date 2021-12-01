@@ -19,7 +19,18 @@ export class ContextService {
     return this._activeCodeLevel.content;
   }
 
-  private getStartCodeLevel () : CodeLevelInterface {
+  public get language() {
+    switch (this._activeCodeLevel.language) {
+      case CODE_LANGUAGE.PYTHON:
+        return "python"
+      case CODE_LANGUAGE.CSHARP:
+        return "c#"
+      case CODE_LANGUAGE.JAVASCRIPT:
+        return "javascript"      
+    }
+  }
+
+  private getStartCodeLevel () : CodeLevelInterface { 
     let maxIndex = this._codeLevels.length
     let randomIndex = Math.floor(Math.random() * maxIndex);
     // let codeLevel = this._codeLevels.filter(c => c.level == 1)[randomIndex];

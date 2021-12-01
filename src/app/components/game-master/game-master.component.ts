@@ -17,7 +17,7 @@ export class GameMasterComponent implements OnInit {
    }
 
   private initializeScreen = () => {
-    const html = hljs.highlight(this.contextService.code, {language: "python"})
+    const html = hljs.highlight(this.contextService.code, {language: this.contextService.language})
     document.getElementById("codeField").innerHTML = html.value
   }
 }

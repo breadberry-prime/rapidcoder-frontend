@@ -2,16 +2,16 @@
     {
         "level" : 1,
         "language" : "PYTHON",
-        "content" : ">>> print(\"Hello World!\")"
+        "content" : "\n>>> print(\"Hello World!\")"
     },
     {
         "level" : 1,
         "language" : "CSHARP",
-        "content" : "Console.WriteLine(\"Hello World!\");"
+        "content" : "\nConsole.WriteLine(\"Hello World!\");"
     },
     {
         "level" : 1,
         "language" : "JAVASCRIPT",
-        "content" : "console.write(\"Hello World!\");"
+        "content" : "\nconsole.write(\"Hello World!\");"
     }
 ]

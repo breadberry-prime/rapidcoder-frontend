@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ViewService {
-  private _activeTheme = "shades-of-purple.css"
+  private _activeTheme = "dracula.css"
 
   constructor() {
     this.loadTheme()
