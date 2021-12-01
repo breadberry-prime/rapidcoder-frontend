@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {ViewRenderLetterParameterInterface} from "../interfaces/view.render-letter.parameter.interface";
+import {PressedLetterInterface} from "../interfaces/pressed-letter.interface";
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +8,12 @@ export class ViewService {
 
   constructor() { }
 
-  public renderLetter = (actionDescription: ViewRenderLetterParameterInterface) => {}
-  public startGame = () => {}
+  private initializeScreen = () => {}
+
+  public renderAction = (actionInterface: PressedLetterInterface) => {
+    // TODO implement render action
+  }
+
   public endGame = () => {}
 }
+

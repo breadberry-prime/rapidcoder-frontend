@@ -14,7 +14,9 @@ export class GameService {
       private statsService: StatsService,
       private viewService: ViewService,
       private inputService: InputService
-  ) { }
+  ) {
+    this.startNewGame()
+  }
 
   private submitGameResult = (gameResult: any) => {
     // send formatted data to view service to display stats to user
@@ -24,8 +26,12 @@ export class GameService {
     if (this.gameState === GAMESTATE.IDLE || this.gameState === GAMESTATE.FINISHED){
       this.gameState = GAMESTATE.PLAYING;
       const eventEmitter = this.inputService.startTracking()
-      this.statsService.startTracking(eventEmitter)
 
+      eventEmitter.subscribe(pressedLetterInterface => {
+        this.viewService.renderAction(pressedLetterInterface)
+        this.statsService.trackingUpdate(pressedLetterInterface)
+        console.log(pressedLetterInterface)
+      })
 
     } else if (this.gameState === GAMESTATE.PLAYING){
       // additional process when game is running
