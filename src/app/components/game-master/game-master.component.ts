@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import hljs from 'highlight.js';
 import {ContextService} from "../../services/context.service";
 
 @Component({
@@ -7,11 +8,16 @@ import {ContextService} from "../../services/context.service";
   styleUrls: ['./game-master.component.sass']
 })
 export class GameMasterComponent implements OnInit {
-
   constructor(
       public contextService: ContextService
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.initializeScreen()
+   }
+
+  private initializeScreen = () => {
+    const html = hljs.highlight(this.contextService.code, {language: "python"})
+    document.getElementById("codeField").innerHTML = html.value
   }
 }

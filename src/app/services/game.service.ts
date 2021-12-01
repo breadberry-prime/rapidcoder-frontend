@@ -28,7 +28,6 @@ export class GameService {
       const eventEmitter = this.inputService.startTracking()
 
       eventEmitter.subscribe(pressedLetterInterface => {
-        this.viewService.renderAction(pressedLetterInterface)
         this.statsService.trackingUpdate(pressedLetterInterface)
         console.log(pressedLetterInterface)
       })
