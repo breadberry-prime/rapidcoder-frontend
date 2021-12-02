@@ -31,9 +31,8 @@ export class ContextService {
   }
 
   private getStartCodeLevel () : CodeLevelInterface { 
-    let maxIndex = this._codeLevels.length
+    let maxIndex = this._codeLevels.length - 1;
     let randomIndex = Math.floor(Math.random() * maxIndex);
-    // let codeLevel = this._codeLevels.filter(c => c.level == 1)[randomIndex];
     let codeLevel = this._codeLevels[randomIndex];
 
     return codeLevel;
