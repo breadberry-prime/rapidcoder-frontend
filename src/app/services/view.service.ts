@@ -31,7 +31,7 @@ export class ViewService {
   }
 
   private setRandomTheme = () => {
-    let maxIndex = themes.length
+    let maxIndex = themes.length - 1;
     let randomIndex = Math.floor(Math.random() * maxIndex);
     this._activeTheme = themes[randomIndex];
   }
