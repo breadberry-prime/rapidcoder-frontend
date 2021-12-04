@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import hljs from 'highlight.js';
+import { ViewService } from 'src/app/services/view.service';
 import {ContextService} from "../../services/context.service";
 
 @Component({
@@ -9,11 +10,13 @@ import {ContextService} from "../../services/context.service";
 })
 export class GameMasterComponent implements OnInit {
   constructor(
-      public contextService: ContextService
+      public contextService: ContextService,
+      public viewService: ViewService
   ) { }
 
   ngOnInit() {
-    this.initializeScreen()
+    this.initializeScreen();
+    this.viewService.refactoring();
    }
 
   private initializeScreen = () => {

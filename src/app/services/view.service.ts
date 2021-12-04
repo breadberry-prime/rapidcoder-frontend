@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit, ViewChild } from '@angular/core';
 import { themeInterface } from '../interfaces/theme.interface';
 import { themes } from '../data/themes';
 
@@ -12,6 +12,28 @@ export class ViewService {
   constructor() {
     this.setRandomTheme();
     this.loadTheme();
+  }
+  
+  public refactoring = () => {
+    const codeElements = document.getElementsByTagName("code")[0].childNodes;
+
+    codeElements.forEach(codeElement => {
+      let indexOfLetter = 0; 
+      
+      const wrapper = document.createElement("div")
+      const codeBlockValue = codeElement.textContent
+
+      for (const letter of codeBlockValue) {
+        const span = document.createElement("span")
+        span.innerText = letter
+        span.setAttribute("id", indexOfLetter.toString())
+        // @ts-ignore
+        span.setAttribute("class", codeElement)
+        wrapper.appendChild(span)
+
+        indexOfLetter++;
+      }
+    })
   }
   
   public set activeTheme(id: number) {
