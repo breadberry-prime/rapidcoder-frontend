@@ -9,11 +9,11 @@ export const codeLevels: CodeLevelInterface[] = [
         "level" : 1,
         "language" : CODE_LANGUAGE.PYTHON,
         "content" : "\nprint(\"Hello World!\")"
-    },    
+    },
     {
         "level" : 2,
         "language" : CODE_LANGUAGE.PYTHON,
-        "content" : "\nx = 42\ny = 93\nprint(x + y)"
+        "content" : "x = 42\ny = 93\nprint(x + y)"
     },
     {
         "level" : 3,

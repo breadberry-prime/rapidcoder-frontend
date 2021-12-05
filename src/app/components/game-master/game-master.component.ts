@@ -16,11 +16,11 @@ export class GameMasterComponent implements OnInit {
 
   ngOnInit() {
     this.initializeScreen();
-    this.viewService.refactoring();
    }
 
   private initializeScreen = () => {
-    const html = hljs.highlight(this.contextService.code, {language: this.contextService.language})
-    document.getElementById("codeField").innerHTML = html.value
+    const html = this.viewService.refactoring(this.contextService.code, this.contextService.language)
+    hljs.highlight(this.contextService.code, {language: this.contextService.language})
+    document.getElementById("codeField").appendChild(html)
   }
 }

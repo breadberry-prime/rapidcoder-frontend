@@ -1,6 +1,7 @@
 import { Injectable, OnInit, ViewChild } from '@angular/core';
 import { themeInterface } from '../interfaces/theme.interface';
 import { themes } from '../data/themes';
+import hljs from "highlight.js";
 
 
 @Injectable({
@@ -13,29 +14,50 @@ export class ViewService {
     this.setRandomTheme();
     this.loadTheme();
   }
-  
-  public refactoring = () => {
-    const codeElements = document.getElementsByTagName("code")[0].childNodes;
 
-    codeElements.forEach(codeElement => {
-      let indexOfLetter = 0; 
-      
-      const wrapper = document.createElement("div")
-      const codeBlockValue = codeElement.textContent
+  public refactoring = (code: string, language): HTMLElement => {
+    const codeLines = code.split("\n")
+    let indexOfLetter = 0;
 
-      for (const letter of codeBlockValue) {
-        const span = document.createElement("span")
-        span.innerText = letter
-        span.setAttribute("id", indexOfLetter.toString())
+    const wrapper = document.createElement("code")
+    wrapper.setAttribute("class", "codeWrapper")
+
+    codeLines.forEach(codeLine => {
+      const codeLineWrapper = document.createElement("div")
+      codeLineWrapper.setAttribute("class", "codeLine")
+
+      const highlightedLine = hljs.highlight(codeLine, {language})
+      const node = new DOMParser().parseFromString(highlightedLine.value, "text/html")
+
+      const codeBlocks: NodeListOf<ChildNode> = node.getElementsByTagName("Body")[0].childNodes
+
+      codeBlocks.forEach(codeBlock => {
+        const codeWrapper = document.createElement("div")
+        codeWrapper.setAttribute("class", "codeWrapper")
+
         // @ts-ignore
-        span.setAttribute("class", codeElement)
-        wrapper.appendChild(span)
+        const codeBlockValue = codeBlock.nodeValue ? codeBlock.nodeValue: codeBlock.innerText
+        // @ts-ignore
+        const codeBlockClass = codeBlock.nodeValue ? undefined: codeBlock.className
 
-        indexOfLetter++;
-      }
+        for (const letter of codeBlockValue) {
+          const span = document.createElement("span")
+          span.innerText = letter
+          span.setAttribute("id", indexOfLetter.toString())
+          // @ts-ignore
+          span.setAttribute("class", codeBlockClass)
+          codeWrapper.appendChild(span)
+
+          indexOfLetter++;
+        }
+        codeLineWrapper.appendChild(codeWrapper)
+      })
+      wrapper.appendChild(codeLineWrapper)
     })
+
+    return wrapper
   }
-  
+
   public set activeTheme(id: number) {
     this._activeTheme = themes[id];
     this.loadTheme();
@@ -58,7 +80,7 @@ export class ViewService {
     this._activeTheme = themes[randomIndex];
   }
 
-  public setTheme = (id: number) => { 
+  public setTheme = (id: number) => {
     if (this._activeTheme.id == id) {
       return;
     }
