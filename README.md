@@ -1,34 +1,41 @@
-# Rapidcoder
-We recommend following the guidelines below to increase your chances of getting your change accepted.
+Understood, let's simplify the message to reflect that the repository was primarily a prototype or a first demo, and that its functionalities have been moved elsewhere. Here's a more concise revision for the `README.md`:
 
-#### Code Guidelines ✨
+---
 
-- file naming convention: `filename.type.ts` e.g. `hello-world.component.ts`
-- class naming convention: **PascalCase** -> `ExampleClass`
-- function naming convention: **KebabCase** -> `exampleFunction`
-- variable naming convention: **KebabCase** -> `exampleVariable` 
-- enum naming convention: **SnakeCase** -> `EXAMPLE_VARIABLE` 
-- Do **not** push code with `comments, refactor code if the complexity is to hight
-- **Do not include swear words**
+# Rapidcoder - Initial Prototype
 
-### Commands 🪁
-#### Run server
+**Notice:** This repository was initially created as a prototype or first demo (MVP) for Rapidcoder. It no longer contains the project's main functionalities, as they have been moved to a different location. This repository is kept for historical reference and is not actively maintained.
 
-Run `npm run start` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Introduction
+Rapidcoder's initial prototype was a foundational step in our development journey. It serves as a snapshot of our early ideas and attempts, useful for understanding the project's evolution.
 
-#### Code scaffolding
+---
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-- abbreviation `ng g c hello-world` -> creates new component named `hello-world`
+## Historical Code Guidelines ✨
+This section outlines the coding conventions and commands used during the early phase of Rapidcoder. They are provided for reference only.
 
-#### Build
+#### Code Conventions
+- File naming: `filename.type.ts` (e.g., `hello-world.component.ts`)
+- Class naming: **PascalCase** (e.g., `ExampleClass`)
+- Function naming: **KebabCase** (e.g., `exampleFunction`)
+- Variable naming: **KebabCase** (e.g., `exampleVariable`)
+- Enum naming: **SnakeCase** (e.g., `EXAMPLE_VARIABLE`)
+- Avoid comments in code; refactor if necessary
+- Refrain from including inappropriate language
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-#### Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+#### Development Commands 🪁
+- `npm run start`: Launches a dev server.
+- `ng generate component component-name`: For generating new components.
+- `ng build`: Builds the project.
+- `ng test`: Executes unit tests via [Karma](https://karma-runner.github.io).
 
 #### Further help
+- Angular CLI: `ng help` or [Angular CLI Overview and Command Reference](https://angular.io/cli).
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+---
+
+**Note:** The information above is for archival purposes and does not reflect current development practices or active maintenance.
+
+---
+
+This revision gives a clear message about the repository's purpose as an initial prototype, indicating its historical context without elaborating on the project's current status or functionalities.
