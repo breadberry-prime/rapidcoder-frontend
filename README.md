@@ -10,6 +10,8 @@ Rapidcoder's initial prototype was a foundational step in our development journe
 ## Historical Code Guidelines ✨
 This section outlines the coding conventions and commands used during the early phase of Rapidcoder. They are provided for reference only.
 
+![CleanShot 2023-11-11 at 07 47 13@2x](https://github.com/breadberry-prime/rapidcoder-frontend/assets/75136042/dad73698-3790-43dc-89dd-f9865e8a0505)
+
 #### Code Conventions
 - File naming: `filename.type.ts` (e.g., `hello-world.component.ts`)
 - Class naming: **PascalCase** (e.g., `ExampleClass`)
