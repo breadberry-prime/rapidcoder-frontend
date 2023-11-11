@@ -1,7 +1,3 @@
-Understood, let's simplify the message to reflect that the repository was primarily a prototype or a first demo, and that its functionalities have been moved elsewhere. Here's a more concise revision for the `README.md`:
-
----
-
 # Rapidcoder - Initial Prototype
 
 **Notice:** This repository was initially created as a prototype or first demo (MVP) for Rapidcoder. It no longer contains the project's main functionalities, as they have been moved to a different location. This repository is kept for historical reference and is not actively maintained.
