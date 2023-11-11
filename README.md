@@ -31,7 +31,3 @@ This section outlines the coding conventions and commands used during the early 
 ---
 
 **Note:** The information above is for archival purposes and does not reflect current development practices or active maintenance.
-
----
-
-This revision gives a clear message about the repository's purpose as an initial prototype, indicating its historical context without elaborating on the project's current status or functionalities.
